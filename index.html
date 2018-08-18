@@ -4,8 +4,132 @@
   <title>Page Title</title>
 </head>
 <body>
+<p id="demo"></p>
 
   <script>
+
+// Player chooses number of rounds 
+    var times = prompt("How many rounds do you want to play?","5");
+    alert("Okay, let's play " + times +" rounds!")
+	var i;
+	var pscore = 0;
+	var cscore = 0;
+// Rounds start, player and computer score counter at 0
+
+    for (i = 0; i < times; i++) 
+{
+	count = +i + 1;
+	console.log(count);
+	alert("Round " + count + "!" + " \n\n(Player score: " + pscore + ", Computer score: " + cscore + ")");
+	
+// Player makes first choice for each round, then computer chooses at random via the computerPlay() function
+    var play = prompt("Do you choose Rock, Paper or Scissors?","Rock");
+    var clean = play.toLowerCase();
+	var first = clean.slice(0,3);
+		
+// Check to ensure correct user input
+	switch (first)
+		{ 
+		case "pap":
+		var playerSelection = 1;
+		console.log(playerSelection);
+		alert("You chose Paper");
+		break;
+
+		case "sci":
+		var playerSelection = 2;
+		console.log(playerSelection);
+		alert("You chose Scissors");
+		break;
+
+		case "roc":
+		var playerSelection = 3;
+		console.log(playerSelection);
+		alert("You chose Rock");
+		break;
+
+		default:
+		console.log(playerSelection);
+		alert("I don't think you entered Rock, Paper or Scissors \n\n You lose a point!");
+		cscore++;
+		}	
+	
+// Computer chooses at random via the computerPlay() function	
+	var computerSelection = Math.floor((Math.random()*3)+1);
+	console.log(computerSelection);
+    computerPlay();
+
+// function calculates who wins and loses chooses at random
+    var outcome = (playerSelection - computerSelection);
+	single(playerSelection, computerSelection);
+}
+
+// Once rounds finished, the score counter should state the final score
+(pscore > cscore) ? alert("Game over! \n\nThe final score is (Player score: " + pscore + ", Computer score: " + cscore + ") \n\nCongratulations the Player wins! \n\nDo you want to play again?") : 
+(pscore < cscore) ? alert("Game over! \n\nThe final score is (Player score: " + pscore + ", Computer score: " + cscore + ") \n\nThe Computer won this time! \n\nDo you want to play again?") :
+alert("Game over! \n\nThe final score is (Player score: " + pscore + ", Computer score: " + cscore + ") \n\nIts a draw! \n\nDo you want to play again?")
+
+//	
+// ** Functions defined below **
+//	
+	
+// single() function calculates who wins and loses 
+    function single(playerSelection, computerSelection) 
+	{
+    	  
+	switch (outcome)
+	  {
+	  case 0:
+	  alert ("It's a draw!\n\nNo points are won by either the Player or Computer");
+	  break;
+	  
+	  case 1:
+	  alert ("You win!");
+	  pscore++;
+	  break;
+	  
+	  case -2:
+	  alert ("You win!");
+	  pscore++;
+	  break;
+	  
+	  case -1:
+	  alert ("You lose!");
+	  cscore++;
+	  break;
+	  
+	  case 2:
+	  alert ("You lose!");
+	  cscore++;
+	  break;  
+	  }
+	}
+
+// computerPlay() function
+    function computerPlay() 
+	{
+    console.log(computerSelection);
+
+    switch(computerSelection) 
+      {
+      case 1:
+      alert("Computer chose Paper");
+      break;
+
+      case 2:
+      alert("Computer chose Scissors");
+      break;
+
+      case 3:
+      alert("Computer chose Rock");
+      break;
+
+      default:
+      alert("CompSelection - something went wrong");
+      }
+	}
+
+
   </script>
 </body>
 </html
